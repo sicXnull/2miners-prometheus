@@ -7,7 +7,7 @@ import requests
 import logging
 
 addy = os.environ.get('MINING-ADDRESS')
-
+name = os.environ.get('RIG-NAME')
 
 class AppMetrics:
     """
@@ -52,7 +52,7 @@ class AppMetrics:
         self.dayreward_number.set(status_data["24hnumreward"])
         self.dayreward.set(status_data["24hreward"])
         self.currentHashrate.set(status_data["currentHashrate"])
-        self.reportedHashrate.set(status_data['workers']['Groyper']['rhr'])
+        self.reportedHashrate.set(status_data['workers'][f'{name}']['rhr'])
         self.current_luck.set(status_data["currentLuck"])
         self.hashrate.set(status_data["hashrate"])
         self.payments_total.set(status_data["paymentsTotal"])
