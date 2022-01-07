@@ -19,17 +19,17 @@ class AppMetrics:
         self.app_port = app_port
         self.polling_interval_seconds = polling_interval_seconds
         # Prometheus metrics to collect
-        self.dayreward_number = Gauge("dayreward_number", "24hnumreward")
-        self.dayreward = Gauge("dayreward", "24hreward")
-        self.currentHashrate = Gauge("hashrate_current", "currentHashrate")
-        self.reportedHashrate = Gauge("hashrate_reported", "reportedHashrate")
-        self.current_luck = Gauge('current_luck', 'currentLuck')
-        self.hashrate = Gauge('hashrate', 'Hashrate')
-        self.payments_total = Gauge('payments_total', 'paymentsTotal')
-        self.round_shares = Gauge('round_shares', 'roundShares')
-        self.shares_stale = Gauge('shares_stale', 'sharesStale')
-        self.shares_valid = Gauge('shares_valid', 'sharesValid')
-        self.current_balance = Gauge('current_balance','stats_balance')
+        self.miner_dayreward_number = Gauge("miner_dayreward_number", "24hnumreward")
+        self.miner_dayreward = Gauge("miner_dayreward", "24hreward")
+        self.miner_currentHashrate = Gauge("miner_hashrate_current", "currentHashrate")
+        self.miner_reportedHashrate = Gauge("miner_hashrate_reported", "reportedHashrate")
+        self.miner_current_luck = Gauge('miner_current_luck', 'currentLuck')
+        self.miner_hashrate = Gauge('miner_hashrate', 'Hashrate')
+        self.miner_payments_total = Gauge('miner_payments_total', 'paymentsTotal')
+        self.miner_round_shares = Gauge('miner_round_shares', 'roundShares')
+        self.miner_shares_stale = Gauge('miner_shares_stale', 'sharesStale')
+        self.miner_shares_valid = Gauge('miner_shares_valid', 'sharesValid')
+        self.miner_current_balance = Gauge('miner_current_balance','stats_balance')
 
     def run_metrics_loop(self):
         """Metrics fetching loop"""
@@ -49,16 +49,16 @@ class AppMetrics:
         status_data = resp.json()
 
         # Update Prometheus metrics with application metrics
-        self.dayreward_number.set(status_data["24hnumreward"])
-        self.dayreward.set(status_data["24hreward"])
-        self.currentHashrate.set(status_data["currentHashrate"])
-        self.reportedHashrate.set(status_data['workers'][f'{name}']['rhr'])
-        self.current_luck.set(status_data["currentLuck"])
-        self.hashrate.set(status_data["hashrate"])
-        self.payments_total.set(status_data["paymentsTotal"])
-        self.round_shares.set(status_data["roundShares"])
-        self.shares_valid.set(status_data["sharesValid"])
-        self.current_balance.set(status_data['stats']['balance'])
+        self.miner_dayreward_number.set(status_data["24hnumreward"])
+        self.miner_dayreward.set(status_data["24hreward"])
+        self.miner_currentHashrate.set(status_data["currentHashrate"])
+        self.miner_reportedHashrate.set(status_data['workers'][f'{name}']['rhr'])
+        self.miner_current_luck.set(status_data["currentLuck"])
+        self.miner_hashrate.set(status_data["hashrate"])
+        self.miner_payments_total.set(status_data["paymentsTotal"])
+        self.miner_round_shares.set(status_data["roundShares"])
+        self.miner_shares_valid.set(status_data["sharesValid"])
+        self.miner_current_balance.set(status_data['stats']['balance'])
 
 def main():
     """Main entry point"""
