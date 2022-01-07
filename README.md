@@ -14,7 +14,7 @@ docker build -t 2miners-exporter:latest .
 - Run it while listening on localhost:9877:
 
 ```sh
-docker run -d -p 9877:9877 --name 2miner-exporter --restart=always -e MINING-ADDRESS='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 2miners-exporter:latest
+docker run -d -p 9877:9877 --name 2miners-exporter --restart=always -e MINING-ADDRESS='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' 2miners-exporter:latest
 ```
 
 - Run it interactively:
