@@ -7,12 +7,14 @@ import requests
 import logging
 
 addy = os.environ.get('MINING-ADDRESS')
+coin = os.environ.get('MINING-COIN')
 name = os.environ.get('RIG-NAME')
+
 
 class AppMetrics:
     """
-    Representation of Prometheus metrics and loop to fetch and transform
-    application metrics into Prometheus metrics.
+    Grab 2Miners Metrics
+    .
     """
 
     def __init__(self, app_port=80, polling_interval_seconds=5):
@@ -40,12 +42,11 @@ class AppMetrics:
 
     def fetch(self):
         """
-        Get metrics from application and refresh Prometheus metrics with
-        new values.
+        Refresh with new values.
         """
 
         # Fetch raw status data from the application
-        resp = requests.get(url=f"https://eth.2miners.com/api/accounts/{addy}")
+        resp = requests.get(url=f"https://{coin}.2miners.com/api/accounts/{addy}")
         status_data = resp.json()
 
         # Update Prometheus metrics with application metrics
